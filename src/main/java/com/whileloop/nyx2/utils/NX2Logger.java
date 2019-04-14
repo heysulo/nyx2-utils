@@ -26,7 +26,7 @@ package com.whileloop.nyx2.utils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class NyxLogger {
+public class NX2Logger {
 
     public enum Loglevel {
 
