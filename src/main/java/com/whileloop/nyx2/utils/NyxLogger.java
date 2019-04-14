@@ -26,10 +26,6 @@ package com.whileloop.nyx2.utils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- *
- * @author sulochana
- */
 public class NyxLogger {
 
     public enum Loglevel {
@@ -48,42 +44,58 @@ public class NyxLogger {
 
     private int verboseLevel = Loglevel.INFO.value;
 
+    protected void debug(String message) {
+        debug("%s", message);
+    }
+
     protected void debug(String format, Object... args) {
         if (verboseLevel < Loglevel.DEBUG.value) {
             return;
         }
-        formatter("DEBG", format, args);
+        formatter("DEBG", String.format(format, args));
+    }
+
+    protected void info(String message) {
+        info("%s", message);
     }
 
     protected void info(String format, Object... args) {
         if (verboseLevel < Loglevel.INFO.value) {
             return;
         }
-        formatter("INFO", format, args);
+        formatter("INFO", String.format(format, args));
+    }
+
+    protected void warn(String message) {
+        warn("%s", message);
     }
 
     protected void warn(String format, Object... args) {
         if (verboseLevel < Loglevel.WARN.value) {
             return;
         }
-        formatter("WARN", format, args);
+        formatter("WARN", String.format(format, args));
+    }
+
+    protected void crit(String message) {
+        crit("%s", message);
     }
 
     protected void crit(String format, Object... args) {
         if (verboseLevel < Loglevel.CRIT.value) {
             return;
         }
-        formatter("CRIT", format, args);
+        formatter("CRIT", String.format(format, args));
     }
 
-    private void formatter(String logType, String format, Object... args) {
+    private void formatter(String logType, String formattedString) {
         System.out.println(String.format(
                 "%s | %s | %s | %s | %s",
                 getTimeStamp(),
                 String.format("%s@%d", this.getClass().getSimpleName(), this.hashCode()),
                 Thread.currentThread().getName(),
                 logType,
-                String.format(format, args)));
+                formattedString));
     }
 
     private String getTimeStamp() {
