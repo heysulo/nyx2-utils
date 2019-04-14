@@ -99,7 +99,7 @@ public class NyxLogger {
     }
 
     private String getTimeStamp() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd | HH:mm:ss z");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd | HH:mm:ss.SSS z");
         Date date = new Date(System.currentTimeMillis());
         return formatter.format(date);
     }
